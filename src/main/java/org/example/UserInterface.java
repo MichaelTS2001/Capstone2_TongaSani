@@ -22,7 +22,7 @@ public class UserInterface {
         homeScreen(scanner);
     }
 
-    public static void homeScreen(Scanner scanner) {
+    private static void homeScreen(Scanner scanner) {
 
         System.out.println("1) New Order");
         System.out.println("2) Exit");
@@ -52,7 +52,7 @@ public class UserInterface {
 
     }
 
-    public static void orderScreen(Scanner scanner) {
+    private static void orderScreen(Scanner scanner) {
 
         System.out.println();
 
