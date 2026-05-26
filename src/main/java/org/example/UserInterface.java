@@ -4,9 +4,11 @@ import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class UserInterface {
+
+    static Pizza pizza; //This makes the variable class available for the entire class
+
     public static void main(String[] args) {
 
-       Pizza pizza = new Pizza;
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("============== Uncle Mikey's Pizza ==============\n");
@@ -14,7 +16,7 @@ public class UserInterface {
         homeScreen(scanner);
     }
 
-    public static void homeScreen(Scanner scanner){
+    public static void homeScreen(Scanner scanner) {
 
         System.out.println("1) New Order");
         System.out.println("2) Exit");
@@ -24,7 +26,7 @@ public class UserInterface {
         int menu = scanner.nextInt();
 
         //validate the user's input
-        while(menu < 1 || menu > 2){
+        while (menu < 1 || menu > 2) {
             System.out.println("\nInvalid input. Please try again.");
 
             System.out.println("\n1) New Order");
@@ -35,32 +37,31 @@ public class UserInterface {
             menu = scanner.nextInt();
         }
 
-        if(menu == 1){
+        if (menu == 1) {
             orderScreen(scanner);
-        }
-        else{
+        } else {
             System.out.println("\nThank you for visiting Uncle Mikey's Pizza!");
             System.exit(0);
         }
 
     }
 
-    public static void orderScreen(Scanner scanner){
+    public static void orderScreen(Scanner scanner) {
 
         System.out.println();
 
         System.out.println("1) Add pizza"
-            + "\n2) Add Drink"
-            + "\n3) Add Garlic Knots"
-            + "\n4) Checkout"
-            + "\n0) Cancel Order");
+                + "\n2) Add Drink"
+                + "\n3) Add Garlic Knots"
+                + "\n4) Checkout"
+                + "\n0) Cancel Order");
 
         System.out.print("\nSelect a menu option (0-4): ");
 
         int menu = scanner.nextInt();
 
         //validate the user's order screen menu
-        while(menu < 0 || menu > 4){
+        while (menu < 0 || menu > 4) {
             System.out.println("\nInvalid order option. Please try again.\n");
 
             System.out.println("1) Add pizza"
@@ -74,7 +75,7 @@ public class UserInterface {
             menu = scanner.nextInt();
         }
 
-        switch (menu){
+        switch (menu) {
             case 0:
                 System.out.println("\n*** Order has been canceled! ***");
 
@@ -101,32 +102,9 @@ public class UserInterface {
 
     }
 
-    public static void addPizza(Scanner scanner){
+    public static void addPizza(Scanner scanner) {
 
-        System.out.println("Pizza Size:" +
-                "\n\t1) ---> 8" +
-                "\n\t2) ---> 12" +
-                "\n\t3) ---> 16");
-
-        System.out.print("\nSelect your pizza size: ");
-
-        int size = scanner.nextInt();
-
-        //validate the user's crust option
-        while (size < 1 || size > 3){
-            System.out.println("Pizza Size:" +
-                    "\n\t3) ---> 8" +
-                    "\n\t2) ---> 12" +
-                    "\n\t3) ---> 16");
-
-            System.out.print("\nSelect your pizza size: ");
-
-            size = scanner.nextInt();
-        }
-
-        if(size == 1){
-
-        }
+        getPizzaSize(scanner);
 
 
         System.out.println("Pizza Crust:" +
@@ -140,7 +118,7 @@ public class UserInterface {
         int crust = scanner.nextInt();
 
         //validate the user's crust option
-        while (crust < 1 || crust > 4){
+        while (crust < 1 || crust > 4) {
             System.out.println("\nInvalid option. Please try again.");
 
             System.out.println("Pizza Crust:" +
@@ -152,6 +130,29 @@ public class UserInterface {
             System.out.print("\nSelect your pizza crust: ");
 
             crust = scanner.nextInt();
+        }
+    }
+
+    public static void getPizzaSize(Scanner scanner){
+        System.out.println("Pizza Size:" +
+                "\n\t1) ---> 8" +
+                "\n\t2) ---> 12" +
+                "\n\t3) ---> 16");
+
+        System.out.print("\nSelect your pizza size: ");
+
+        int size = scanner.nextInt();
+
+        //validate the user's crust option
+        while (size < 1 || size > 3) {
+            System.out.println("Pizza Size:" +
+                    "\n\t1) ---> 8" +
+                    "\n\t2) ---> 12" +
+                    "\n\t3) ---> 16");
+
+            System.out.print("\nSelect your pizza size: ");
+
+            size = scanner.nextInt();
         }
     }
 

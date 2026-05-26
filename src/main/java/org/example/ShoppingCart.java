@@ -1,5 +1,6 @@
 package org.example;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +16,10 @@ public class ShoppingCart {
         cart.remove(pizza);
     }
 
-    public double getCartTotal(){
-        double total = 0;
+    public BigDecimal getCartTotal(){
+        BigDecimal total = null;
         for(Pizza pizza : cart){
-            total += pizza.getPrice();
+            total =  pizza.getPrice();
         }
 
         return total;
