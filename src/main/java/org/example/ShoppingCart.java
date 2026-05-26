@@ -19,7 +19,7 @@ public class ShoppingCart {
     public BigDecimal getCartTotal(){
         BigDecimal total = null;
         for(Pizza pizza : cart){
-            total =  pizza.getPrice();
+            total =  total.add(pizza.getPrice());
         }
 
         return total;

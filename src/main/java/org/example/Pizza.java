@@ -1,47 +1,36 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public class Pizza {
 
     //properties for a pizza
     private int size;
-    private int crustType;
+    private String crustType;
     private double price;
-    private String topping;
+    private List<Toppings> topping;
     private String others;
 
+    public Pizza(){
 
-    public Pizza(int size, int crustType, double price, String topping, String others) {
-
-        this.size = size;
-        this.crustType = crustType;
-        this.price = price;
-        this.topping = topping;
-        this.others = others;
     }
 
+
     public int getSize() {
-        if(size == 1){
-           return size = 8;
-        }
-        else if(size == 2){
-            return size = 12;
-        }
-        else{
-            return size = 16;
-        }
+        return size;
     }
 
     public void setSize(int size) {
         this.size = size;
     }
 
-    public int getCrustType() {
+    public String getCrustType() {
+
         return crustType;
     }
 
-    public void setCrustType(int crustType) {
+    public void setCrustType(String crustType) {
         this.crustType = crustType;
     }
 
@@ -62,11 +51,11 @@ public class Pizza {
         this.price = price;
     }
 
-    public String getTopping() {
+    public List<Toppings> getTopping() {
         return topping;
     }
 
-    public void setTopping(String topping) {
+    public void setTopping(List<Toppings> topping) {
         this.topping = topping;
     }
 
@@ -78,9 +67,4 @@ public class Pizza {
         this.others = others;
     }
 
-    @Override
-    public String toString() {
-        return "size=" + size +
-                '}';
-    }
 }

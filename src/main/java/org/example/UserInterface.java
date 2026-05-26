@@ -1,13 +1,19 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
 
     static Pizza pizza; //This makes the variable class available for the entire class
 
+    public ShoppingCart cart = new ShoppingCart();
+
     public static void main(String[] args) {
+
+
 
         Scanner scanner = new Scanner(System.in);
 
@@ -104,9 +110,54 @@ public class UserInterface {
 
     public static void addPizza(Scanner scanner) {
 
-        getPizzaSize(scanner);
+        Pizza newPizza = new Pizza();
+
+        getPizzaSize(scanner, newPizza);
+
+        getPizzaCrust(scanner);
+
+    }
+
+    public static void getPizzaSize(Scanner scanner, Pizza pizza){
+        System.out.println("Pizza Size:" +
+                "\n\t1) ---> Personal: 8 inches" +
+                "\n\t2) ---> Medium: 12 inches" +
+                "\n\t3) ---> Large: 16 inches");
+
+        System.out.print("\nSelect your pizza size: ");
+
+        int size = scanner.nextInt();
+
+        System.out.println();
+
+        //validate the user's pizza size option
+        while (size < 1 || size > 3) {
+            System.out.println("Pizza Size:" +
+                    "\n\t1) ---> Personal: 8 inches" +
+                    "\n\t2) ---> Medium: 12 inches" +
+                    "\n\t3) ---> Large: 16 inches");
+
+            System.out.print("\nSelect your pizza size: ");
+
+            size = scanner.nextInt();
 
 
+            if(size == 1){
+                pizza.setSize(size);
+            }
+            else if(size == 2){
+                pizza.setSize(size);
+            }
+            else{
+                pizza.setSize(size);
+            }
+
+            System.out.println();
+
+        }
+    }
+
+    public static void getPizzaCrust(Scanner scanner){
         System.out.println("Pizza Crust:" +
                 "\n\t 1) Thin" +
                 "\n\t 2) Regular" +
@@ -130,30 +181,45 @@ public class UserInterface {
             System.out.print("\nSelect your pizza crust: ");
 
             crust = scanner.nextInt();
+
+            String crustString = null;
+
+            if(crust == 1){
+                pizza.setCrustType("Thin");
+            }
+            else if(crust == 2){
+                pizza.setCrustType("Regular");
+            }
+            else if(crust == 3){
+                pizza.setCrustType("Thick");
+            }
+            else{
+                pizza.setCrustType("Cauliflower");
+            }
+
+            System.out.println();
         }
     }
 
-    public static void getPizzaSize(Scanner scanner){
-        System.out.println("Pizza Size:" +
-                "\n\t1) ---> 8" +
-                "\n\t2) ---> 12" +
-                "\n\t3) ---> 16");
+    public void getTopping(Scanner scanner){
 
-        System.out.print("\nSelect your pizza size: ");
+        System.out.println("List of all meat toppings:" +
+                "-----------------------------------------------" +
+                "\n\t- Pepperoni" +
+                "\n\t- Sausage" +
+                "\n\t- Ham" +
+                "\n\t- Bacon" +
+                "\n\t- Chicken" +
+                "\n\t- Meatball" +
+                "-----------------------------------------------");
 
-        int size = scanner.nextInt();
+        System.out.print("Enter your choice of meat:");
 
-        //validate the user's crust option
-        while (size < 1 || size > 3) {
-            System.out.println("Pizza Size:" +
-                    "\n\t1) ---> 8" +
-                    "\n\t2) ---> 12" +
-                    "\n\t3) ---> 16");
+        String meat = scanner.nextLine();
 
-            System.out.print("\nSelect your pizza size: ");
+        //while(!meat.equals("Pepperoni") || !meat.equals("Sausage") || !meat.equals("Ham") ||)
 
-            size = scanner.nextInt();
-        }
+
     }
 
 }
