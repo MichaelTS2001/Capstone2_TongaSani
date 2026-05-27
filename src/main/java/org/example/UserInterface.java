@@ -14,12 +14,12 @@ public class UserInterface {
     public ShoppingCart cart = new ShoppingCart();
 
 
-    public UserInterface(){
+    public UserInterface() {
         scanner = new Scanner(System.in);
     }
 
 
-    public void display(){
+    public void display() {
 
 
         System.out.println("============== Uncle Mikey's Pizza ==============\n");
@@ -115,15 +115,13 @@ public class UserInterface {
 
     public static void addPizza(Scanner scanner) {
 
-        //Pizza newPizza = new Pizza();
-
-        //getPizzaSize(scanner, newPizza);
+        getPizzaSize(scanner);
 
         getPizzaCrust(scanner);
 
     }
 
-    public static void getPizzaSize(Scanner scanner, Pizza pizza){
+    public static void getPizzaSize(Scanner scanner) {
         System.out.println("Pizza Size:" +
                 "\n\t1) ---> Personal: 8 inches" +
                 "\n\t2) ---> Medium: 12 inches" +
@@ -152,7 +150,7 @@ public class UserInterface {
         }
     }
 
-    public static void getPizzaCrust(Scanner scanner){
+    public static void getPizzaCrust(Scanner scanner) {
         System.out.println("Pizza Crust:" +
                 "\n\t 1) Thin" +
                 "\n\t 2) Regular" +
@@ -176,40 +174,34 @@ public class UserInterface {
             System.out.print("\nSelect your pizza crust: ");
 
             crust = scanner.nextInt();
-
-
-//            if(crust == 1){
-//                return "Thin";
-//            }
-//            else if(crust == 2){
-//                return "Regular";
-//            }
-//            else if(crust == 3){
-//                pizza.setCrustType("Thick");
-//            }
-//            else{
-//                pizza.setCrustType("Cauliflower");
-//            }
-//
-//            System.out.println();
-//        }
+        }
     }
 
-//    public static List<Toppings> getTopping(Scanner scanner){
-//
-//        System.out.println("Toppings Categories: " +
-//                "\n1. Meats" +
-//                "\n2. Cheese" +
-//                "\n3. Regular Toppings" +
-//                "\n4. Sauces");
-//
-//        System.out.print("Enter your choice of meat:");
-//
-//        int topping = scanner.nextInt();
+    public static void userTopping(Scanner scanner){
+        System.out.println("Toppings Categories:" +
+                "\n\t1- Meats" +
+                "\n\t2- Cheese" +
+                "\n\t3- Regular Toppings" +
+                "\n\t4- Sauces");
 
-        //while(!meat.equals("Pepperoni") || !meat.equals("Sausage") || !meat.equals("Ham") ||)
+        int userTopping = scanner.nextInt();
 
+        //validate the user's topping option
+        while (userTopping < 1 || userTopping > 4) {
+            System.out.println("\nInvalid option. Please try again.");
 
+            System.out.println("Toppings Categories:" +
+                    "\n\t1- Meats" +
+                    "\n\t2- Cheese" +
+                    "\n\t3- Regular Toppings" +
+                    "\n\t4- Sauces");
+
+            userTopping = scanner.nextInt();
+        }
+
+        switch (userTopping){
+            case 1:
+                System.out.println("Select your meat toppings");
+        }
     }
-
 }

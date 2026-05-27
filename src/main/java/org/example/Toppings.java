@@ -8,9 +8,10 @@ public class Toppings {
     private boolean premium;
     private BigDecimal price;
 
-    public Toppings(String name, String type, boolean premium, BigDecimal price) {
+    public Toppings(String name, String type, boolean premium) {
         this.name = name;
         this.type = type;
+        this.premium = premium;
         this.price = price;
     }
 
@@ -47,35 +48,35 @@ public class Toppings {
         }
         else if(type.equalsIgnoreCase("Extra Meat")){
             if(size == 1) {
-                return new BigDecimal("0.50");
+                return BigDecimal.valueOf(0.50);
             }
             else if(size == 2){
-                return new BigDecimal("1");
+                return BigDecimal.valueOf(1);
             }
             else{
-                return new BigDecimal("1.50");
+                return BigDecimal.valueOf(1.50);
             }
         }
         else if (type.equalsIgnoreCase("Extra Cheese")) {
             if(size == 1) {
-                return new BigDecimal("0.30");
+                return BigDecimal.valueOf(0.30);
             }
             else if(size == 2){
-                return new BigDecimal("0.60");
+                return BigDecimal.valueOf(0.60);
             }
             else{
-                return new BigDecimal("0.90");
+                return BigDecimal.valueOf(0.90);
             }
         }
         else{
             if(size == 1) {
-                return new BigDecimal("0.75");
+                return BigDecimal.valueOf(0.75);
             }
             else if(size == 2){
-                return new BigDecimal("1.50");
+                return BigDecimal.valueOf(1.50);
             }
             else{
-                return new BigDecimal("2.25");
+                return BigDecimal.valueOf(2.25);
             }
         }
     }
