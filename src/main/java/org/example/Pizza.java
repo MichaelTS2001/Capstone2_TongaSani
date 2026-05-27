@@ -7,15 +7,17 @@ public class Pizza {
 
     //properties for a pizza
     private int size;
-    private String crustType;
-    private double price;
+    private int crustType;
+    private BigDecimal price;
+    private int multiplier; //multiplies the cost of a topping based off the size of the pizza
     private List<Toppings> topping;
-    private String others;
 
-    public Pizza(){
+    public Pizza(int size, int crustType, List<Toppings> topping) {
+        this.size = size;
+        this.crustType = crustType;
+        this.topping = topping;
 
     }
-
 
     public int getSize() {
         return size;
@@ -25,46 +27,44 @@ public class Pizza {
         this.size = size;
     }
 
-    public String getCrustType() {
+    public int getCrustType() {
 
         return crustType;
     }
 
-    public void setCrustType(String crustType) {
+    public void setCrustType(int crustType) {
         this.crustType = crustType;
     }
 
     public BigDecimal getPrice() {
 
-        if(size == 1){
-           return BigDecimal.valueOf(8.50);
+
+        BigDecimal sum = new BigDecimal(0);
+
+        for(Toppings topping : topping){
+            sum.add(topping.getPrice(size));
         }
-        else if(size == 2){
-            return BigDecimal.valueOf(12);
+
+        if(crustType == 1 || crustType == 2 || crustType == 3 || crustType == 4){
+            if(size == 1){
+                sum.add(new BigDecimal(8.50));
+            }
+            else if(size == 2){
+                sum.add(new BigDecimal(12));
+            }
+            else{
+                sum.add(new BigDecimal(16.50));
+            }
         }
-        else{
-            return BigDecimal.valueOf(16.50);
-        }
+
+        return sum;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void addTopping(Toppings topping){
+        this.topping.add(topping);
+
+        //clear list once an order is done before starting another
     }
 
-    public List<Toppings> getTopping() {
-        return topping;
-    }
-
-    public void setTopping(List<Toppings> topping) {
-        this.topping = topping;
-    }
-
-    public String getOthers() {
-        return others;
-    }
-
-    public void setOthers(String others) {
-        this.others = others;
-    }
 
 }

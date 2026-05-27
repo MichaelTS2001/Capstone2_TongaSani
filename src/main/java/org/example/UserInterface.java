@@ -7,22 +7,27 @@ import java.util.Scanner;
 
 public class UserInterface {
 
+    private Scanner scanner;
+
     static Pizza pizza; //This makes the variable class available for the entire class
 
     public ShoppingCart cart = new ShoppingCart();
 
-    public static void main(String[] args) {
+
+    public UserInterface(){
+        scanner = new Scanner(System.in);
+    }
 
 
+    public void display(){
 
-        Scanner scanner = new Scanner(System.in);
 
         System.out.println("============== Uncle Mikey's Pizza ==============\n");
 
         homeScreen(scanner);
     }
 
-    private static void homeScreen(Scanner scanner) {
+    public static void homeScreen(Scanner scanner) {
 
         System.out.println("1) New Order");
         System.out.println("2) Exit");
@@ -52,7 +57,7 @@ public class UserInterface {
 
     }
 
-    private static void orderScreen(Scanner scanner) {
+    public static void orderScreen(Scanner scanner) {
 
         System.out.println();
 
@@ -110,9 +115,9 @@ public class UserInterface {
 
     public static void addPizza(Scanner scanner) {
 
-        Pizza newPizza = new Pizza();
+        //Pizza newPizza = new Pizza();
 
-        getPizzaSize(scanner, newPizza);
+        //getPizzaSize(scanner, newPizza);
 
         getPizzaCrust(scanner);
 
@@ -142,16 +147,6 @@ public class UserInterface {
             size = scanner.nextInt();
 
 
-            if(size == 1){
-                pizza.setSize(size);
-            }
-            else if(size == 2){
-                pizza.setSize(size);
-            }
-            else{
-                pizza.setSize(size);
-            }
-
             System.out.println();
 
         }
@@ -172,7 +167,7 @@ public class UserInterface {
         while (crust < 1 || crust > 4) {
             System.out.println("\nInvalid option. Please try again.");
 
-            System.out.println("Pizza Crust:" +
+            System.out.println("\nPizza Crust:" +
                     "\n\t- 1) Thin" +
                     "\n\t- 2) Regular" +
                     "\n\t- 3) Thick" +
@@ -182,40 +177,35 @@ public class UserInterface {
 
             crust = scanner.nextInt();
 
-            String crustString = null;
 
-            if(crust == 1){
-                pizza.setCrustType("Thin");
-            }
-            else if(crust == 2){
-                pizza.setCrustType("Regular");
-            }
-            else if(crust == 3){
-                pizza.setCrustType("Thick");
-            }
-            else{
-                pizza.setCrustType("Cauliflower");
-            }
-
-            System.out.println();
-        }
+//            if(crust == 1){
+//                return "Thin";
+//            }
+//            else if(crust == 2){
+//                return "Regular";
+//            }
+//            else if(crust == 3){
+//                pizza.setCrustType("Thick");
+//            }
+//            else{
+//                pizza.setCrustType("Cauliflower");
+//            }
+//
+//            System.out.println();
+//        }
     }
 
-    public void getTopping(Scanner scanner){
-
-        System.out.println("List of all meat toppings:" +
-                "-----------------------------------------------" +
-                "\n\t- Pepperoni" +
-                "\n\t- Sausage" +
-                "\n\t- Ham" +
-                "\n\t- Bacon" +
-                "\n\t- Chicken" +
-                "\n\t- Meatball" +
-                "-----------------------------------------------");
-
-        System.out.print("Enter your choice of meat:");
-
-        String meat = scanner.nextLine();
+//    public static List<Toppings> getTopping(Scanner scanner){
+//
+//        System.out.println("Toppings Categories: " +
+//                "\n1. Meats" +
+//                "\n2. Cheese" +
+//                "\n3. Regular Toppings" +
+//                "\n4. Sauces");
+//
+//        System.out.print("Enter your choice of meat:");
+//
+//        int topping = scanner.nextInt();
 
         //while(!meat.equals("Pepperoni") || !meat.equals("Sausage") || !meat.equals("Ham") ||)
 
