@@ -1,6 +1,7 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pizza {
@@ -11,10 +12,10 @@ public class Pizza {
     private BigDecimal price;
     private List<Toppings> topping;
 
-    public Pizza(int size, String crustType, List<Toppings> topping) {
+    public Pizza(int size, String crustType) {
         this.size = size;
         this.crustType = crustType;
-        this.topping = topping;
+        this.topping = new ArrayList<>();
 
     }
 
@@ -35,15 +36,9 @@ public class Pizza {
         this.crustType = crustType;
     }
 
-//    public List<ToppingsList> getTopping(ToppingsList item) {
-//        for(Toppings t : topping){
-//            if(t.getName().equalsIgnoreCase(item)){
-//                topping.add(t);
-//            }
-//            topping.add(t);
-//        }
-//        return topping;
-//    } //NEED TO ASK FOR USER'S TOPPING
+    public List<Toppings> getTopping() {
+        return topping;
+    }
 
     public void setTopping(List<Toppings> topping) {
         this.topping = topping;
@@ -76,6 +71,9 @@ public class Pizza {
 
     public void addTopping(Toppings topping){
 
+        //empty list of user's chosen toppings
+
+       // topping.add(toppingsList);
 
         this.topping.add(topping);
 

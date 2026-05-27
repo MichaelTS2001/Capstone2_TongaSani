@@ -1,28 +1,40 @@
 package org.example;
 
+import java.util.List;
+
 public class ToppingsList {
-    Toppings[] list = new Toppings[]{
-            new Toppings("pepperoni" , "meat",true),
-            new Toppings("sausage", "meat",true),
-            new Toppings(" ham", "meat" ,true),
-            new Toppings(" bacon", "meat" ,true),
-            new Toppings(" chicken", "meat" ,true),
-            new Toppings(" meatball", "meat" ,true),
-            new Toppings(" extra meat", "extra meat" ,true),
-            new Toppings(" mozzarella", "cheese" ,true),
-            new Toppings(" parmesan", "cheese" ,true),
-            new Toppings(" ricotta", "cheese" ,true),
-            new Toppings(" goat cheese", "cheese" ,true),
-            new Toppings(" buffalo", "cheese" ,true),
-            new Toppings(" extra cheese", "extra cheese" ,true),
-            new Toppings(" onions", "regular" ,false),
-            new Toppings(" mushrooms", "regular" ,false),
-            new Toppings(" bell peppers", "regular" ,false),
-            new Toppings(" olives", "regular" ,false),
-            new Toppings(" tomatoes", "regular" ,false),
-            new Toppings(" spinach", "regular" ,false),
-            new Toppings(" basil", "regular" ,false),
-            new Toppings(" pineapple", "regular" ,false),
-            new Toppings(" anchovies", "regular" ,false),
-    };
+
+    public static List<Toppings> getToppings() {
+        Toppings[] list = new Toppings[]{
+                new Toppings("Pepperoni", "meat", true),
+                new Toppings("Sausage", "meat", true),
+                new Toppings("Ham", "meat", true),
+                new Toppings("Bacon", "meat", true),
+                new Toppings("Chicken", "meat", true),
+                new Toppings("Meatball", "meat", true),
+                new Toppings("Extra Meat", "extra meat", true),
+                new Toppings("Mozzarella", "cheese", true),
+                new Toppings("Parmesan", "cheese", true),
+                new Toppings("Ricotta", "cheese", true),
+                new Toppings("Goat Cheese", "cheese", true),
+                new Toppings("Buffalo", "cheese", true),
+                new Toppings("Extra Cheese", "extra cheese", true),
+                new Toppings("Onions", "regular", false),
+                new Toppings("Mushrooms", "regular", false),
+                new Toppings("Bell Peppers", "regular", false),
+                new Toppings("Olives", "regular", false),
+                new Toppings("Tomatoes", "regular", false),
+                new Toppings("Spinach", "regular", false),
+                new Toppings("Basil", "regular", false),
+                new Toppings("Pineapple", "regular", false),
+                new Toppings("Anchovies", "regular", false),
+                new Toppings("Marinara", "sauce", false),
+                new Toppings("Alfredo", "sauce", false),
+                new Toppings("Pesto", "sauce", false),
+                new Toppings("BBQ", "sauce", false),
+                new Toppings("Buffalo", "sauce", false),
+                new Toppings("Olive Oil", "sauce", false),
+        };
+        return List.of(list);
+    }
 }

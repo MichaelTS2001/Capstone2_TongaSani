@@ -32,7 +32,7 @@ public class Toppings {
     }
 
     public BigDecimal getPrice(int size) {
-        if(!premium){ //if the topping is not a premium(you don't have to pay for it), return $0 (already included / free)
+        if(type.equalsIgnoreCase("Premium")){ //if the topping is not a premium(you don't have to pay for it), return $0 (already included / free)
             return new BigDecimal("0");
         }
         else if(type.equalsIgnoreCase("Meat")){
