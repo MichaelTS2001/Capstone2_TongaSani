@@ -115,15 +115,17 @@ public class UserInterface {
 
     public static void addPizza(Scanner scanner) {
 
-        getPizzaSize(scanner);
+        Pizza pizza = new Pizza(); //Create a pizza object
 
-        getPizzaCrust(scanner);
+        getPizzaSize(pizza, scanner);
 
-        userTopping(scanner);
+        getPizzaCrust(pizza, scanner);
+
+        userTopping(pizza, scanner);
 
     }
 
-    public static void getPizzaSize(Scanner scanner) {
+    public static void getPizzaSize(Pizza pizza, Scanner scanner) {
         System.out.println("Pizza Size:" +
                 "\n\t1) ---> Personal: 8 inches" +
                 "\n\t2) ---> Medium: 12 inches" +
@@ -146,13 +148,15 @@ public class UserInterface {
 
             size = scanner.nextInt();
 
+            pizza.setSize(size); //set the size of the pizza based off the user's input
+
 
             System.out.println();
 
         }
     }
 
-    public static void getPizzaCrust(Scanner scanner) {
+    public static void getPizzaCrust(Pizza pizza, Scanner scanner) {
         System.out.println("Pizza Crust:" +
                 "\n\t 1) Thin" +
                 "\n\t 2) Regular" +
@@ -162,6 +166,7 @@ public class UserInterface {
         System.out.print("\nSelect your pizza crust: ");
 
         int crust = scanner.nextInt();
+
 
         //validate the user's crust option
         while (crust < 1 || crust > 4) {
@@ -177,9 +182,24 @@ public class UserInterface {
 
             crust = scanner.nextInt();
         }
+
+        switch (crust){
+            case 1:
+                pizza.setCrustType("Thin");
+                break;
+            case 2:
+                pizza.setCrustType("Regular");
+                break;
+            case 3:
+                pizza.setCrustType("Thick");
+                break;
+            default:
+                pizza.setCrustType("Cauliflower");
+                break;
+        }
     }
 
-    public static void userTopping(Scanner scanner) {
+    public static void userTopping(Pizza pizza, Scanner scanner) {
         System.out.println("\nToppings Categories:" +
                 "\n\t1- Meats" +
                 "\n\t2- Cheese" +
@@ -190,67 +210,102 @@ public class UserInterface {
         int userTopping = scanner.nextInt();
 
         //validate the user's topping option
-        while (userTopping < 1 || userTopping > 4) {
+        while (userTopping < 1 || userTopping > 5) {
             System.out.println("\nInvalid option. Please try again.");
 
             System.out.println("Toppings Categories:" +
                     "\n\t1- Meats" +
                     "\n\t2- Cheese" +
                     "\n\t3- Regular Toppings" +
-                    "\n\t4- Sauces");
+                    "\n\t4- Sauces" +
+                    "\n\t5- Go Back");
             System.out.print("Select your topping category: ");
 
             userTopping = scanner.nextInt();
+
         }
 
-        switch (userTopping) {
-            case 1:
-                ToppingsList.getToppings(); //List of available toppings
+        boolean repeat = true;
 
-                System.out.println("\nSelect your meat toppings:");
-                for (Toppings toppingsList : ToppingsList.getToppings()) {
-                    if (toppingsList.getType().equalsIgnoreCase("Meat")) {
-                        System.out.println("\t- " + toppingsList.getName());
+        while(repeat){
+            switch (userTopping) {
+                case 1:
+                    ToppingsList.getToppings(); //List of available toppings
+
+
+                    meatTopping(pizza, ToppingsList.getToppings());
+                    break;
+                case 2:
+                    System.out.println("Select your cheese toppings\n");
+                    for (Toppings toppingsList : ToppingsList.getToppings()) {
+                        if (toppingsList.getType().equalsIgnoreCase("Cheese")) {
+                            System.out.println("\t- " + toppingsList.getName());
+                        }
                     }
-                }
-                break;
-            case 2:
-                System.out.println("Select your cheese toppings\n");
-                for (Toppings toppingsList : ToppingsList.getToppings()) {
-                    if (toppingsList.getType().equalsIgnoreCase("Cheese")) {
-                        System.out.println("\t- " + toppingsList.getName());
+                    break;
+                case 3:
+                    System.out.println("Select your regular toppings");
+                    for (Toppings toppingsList : ToppingsList.getToppings()) {
+                        if (toppingsList.getType().equalsIgnoreCase("Regular")) {
+                            System.out.println(toppingsList.getName());
+                        }
                     }
-                }
-                break;
-            case 3:
-                System.out.println("Select your regular toppings");
-                for (Toppings toppingsList : ToppingsList.getToppings()) {
-                    if (toppingsList.getType().equalsIgnoreCase("Regular")) {
-                        System.out.println(toppingsList.getName());
+                    break;
+                case 4:
+                    System.out.println("Select your sauce");
+                    for (Toppings toppingsList : ToppingsList.getToppings()) {
+                        if (toppingsList.getType().equalsIgnoreCase("Sauce")) {
+                            System.out.println(toppingsList.getName());
+                        }
                     }
+                    break;
+                default:
+                    repeat = false; //exit the loop
+                    break;
+
+            }
+        }
+
+    }
+
+    public static void meatTopping(Pizza pizza, List<Toppings> toppingsList){
+
+        Scanner scanner = new Scanner(System.in);
+
+        boolean repeat = true;
+
+        System.out.println("\nSelect your meat toppings:");
+        for (Toppings list : toppingsList) {
+
+            if (list.getType().equalsIgnoreCase("Meat")) {
+                System.out.println("\t- " + list.getName());
+            }
+        }
+
+        while(repeat){
+            System.out.print("Enter your topping: ");
+            String meat = scanner.nextLine();
+
+            for(Toppings meatTopping : toppingsList){
+                if(meat.equalsIgnoreCase(meatTopping.getName())){
+                    pizza.addTopping(meatTopping);
+                    System.out.println("\nTopping " + meat + " has been added to pizza!\n");
+                    System.out.println("Type exit to go back to previous menu or add another topping.\n");
+
                 }
-                break;
-            default:
-                System.out.println("Select your sauce");
-                for (Toppings toppingsList : ToppingsList.getToppings()) {
-                    if (toppingsList.getType().equalsIgnoreCase("Sauce")) {
-                        System.out.println(toppingsList.getName());
-                    }
+                else if(meat.equalsIgnoreCase("exit")){
+                    returnToToppingsMenu(scanner);
                 }
-                break;
+            }
         }
     }
 
-    public void meatTopping(List<Toppings> toppingsList){
-        System.out.print("Enter your topping: ");
-        String meat = scanner.nextLine();
+    public static void returnToToppingsMenu(Scanner scanner){
+            System.out.println("\nYour selected pizza toppings:");
+            for(Toppings toppings : pizza.getTopping()){
+                System.out.println("\t- " + toppings.getName());
+            }
 
-//        for(Toppings topping : toppingsList){
-//            if(meat)
-//
-//            pizza.addTopping(topping);
-//        }
-
-
-    }
+            userTopping(pizza, scanner);
+        }
 }

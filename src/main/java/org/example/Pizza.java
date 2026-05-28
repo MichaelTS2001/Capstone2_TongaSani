@@ -12,6 +12,10 @@ public class Pizza {
     private BigDecimal price;
     private List<Toppings> topping;
 
+    public Pizza(){
+        this.topping = new ArrayList<>();
+    }
+
     public Pizza(int size, String crustType) {
         this.size = size;
         this.crustType = crustType;
@@ -49,20 +53,20 @@ public class Pizza {
 
         BigDecimal sum = new BigDecimal(0);
 
-        for(Toppings topping : topping){
-            sum.add(topping.getPrice(size));
+        for(Toppings top : this.topping){
+           sum = sum.add(top.getPrice(this.size));
         }
 
-        if(crustType.equalsIgnoreCase("Thin") || crustType.equalsIgnoreCase("Regular")
-            || crustType.equalsIgnoreCase("Thick") || crustType.equalsIgnoreCase("Cauliflower")){
-            if(size == 1){
-                sum.add(new BigDecimal(8.50));
+        if(this.crustType.equalsIgnoreCase("Thin") || this.crustType.equalsIgnoreCase("Regular")
+            || this.crustType.equalsIgnoreCase("Thick") || this.crustType.equalsIgnoreCase("Cauliflower")){
+            if(this.size == 1){
+                sum = sum.add(new BigDecimal("8.50"));
             }
-            else if(size == 2){
-                sum.add(new BigDecimal(12));
+            else if(this.size == 2){
+                sum = sum.add(new BigDecimal("12.00"));
             }
             else{
-                sum.add(new BigDecimal(16.50));
+               sum=  sum.add(new BigDecimal("16.50"));
             }
         }
 
