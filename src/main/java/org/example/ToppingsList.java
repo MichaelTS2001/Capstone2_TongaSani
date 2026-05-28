@@ -34,6 +34,8 @@ public class ToppingsList {
                 new Toppings("BBQ", "sauce", false),
                 new Toppings("Buffalo", "sauce", false),
                 new Toppings("Olive Oil", "sauce", false),
+                new Toppings("Red Pepper", "side", false),
+                new Toppings("Parmesan", "side", false),
         };
         return List.of(list);
     }
