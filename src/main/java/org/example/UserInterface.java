@@ -1,6 +1,9 @@
 package org.example;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -10,15 +13,14 @@ public class UserInterface {
 
     private Scanner scanner;
 
-    static Pizza pizza; //This makes the variable class available for the entire class
+    private static Pizza pizza2 = new Pizza(0, null);
 
-    public ShoppingCart cart = new ShoppingCart();
+    public static ShoppingCart cart = new ShoppingCart();
 
 
     public UserInterface() {
         scanner = new Scanner(System.in);
     }
-
 
     public void display() {
 
@@ -112,10 +114,10 @@ public class UserInterface {
                 addDrink(scanner);
                 break;
             case 3:
-
+                addKnot(scanner);
                 break;
             default:
-
+                printReceipt();
                 break;
         }
     }
@@ -129,6 +131,8 @@ public class UserInterface {
         getPizzaCrust(pizza, scanner);
 
         userTopping(pizza, scanner);
+
+        cart.addToCart(pizza);
     }
 
     public static void getPizzaSize(Pizza pizza, Scanner scanner) {
@@ -192,6 +196,7 @@ public class UserInterface {
         switch (crust){
             case 1:
                 pizza.setCrustType("Thin");
+                pizza2.setCrustType("Thin");
                 break;
             case 2:
                 pizza.setCrustType("Regular");
@@ -508,7 +513,7 @@ public class UserInterface {
     public static Drink addDrink(Scanner scanner){
 
 
-        System.out.println("Select your size for your drink: " +
+        System.out.println("\nSelect your size for your drink: " +
                 "\n\t1) Small" +
                 "\n\t2) Medium" +
                 "\n\t3) Large");
@@ -516,10 +521,10 @@ public class UserInterface {
         System.out.print("Choose your size: ");
         int size = scanner.nextInt();
 
-        while (size < 0 || size > 3) {
-            System.out.println("\nInvalid size option. Please try again.\n");
+        while (size < 1 || size > 3) {
+            System.out.println("\nInvalid size option. Please try again.");
 
-            System.out.println("Select your size for your drink: " +
+            System.out.println("\nSelect your size for your drink: " +
                     "\n\t-1) Small" +
                     "\n\t-2) Medium" +
                     "\n\t-3) Large");
@@ -529,25 +534,72 @@ public class UserInterface {
              size = scanner.nextInt();
         }
 
-        System.out.print("How many drinks would you like? ");
+        System.out.print("\nHow many drinks would you like? ");
+
         int drinkNumber = scanner.nextInt();
 
         while (drinkNumber < 1) {
-            System.out.println("\nInvalid number of drinks option. Please try again.\n");
+            System.out.println("\nInvalid number of drinks option. Please try again.");
 
-            System.out.println("Select your size for your drink: " +
-                    "\n\t-1) Small" +
-                    "\n\t-2) Medium" +
-                    "\n\t-3) Large");
-
-            System.out.print("Choose your size: ");
+            System.out.print("\nHow many drinks would you like? ");
 
             drinkNumber = scanner.nextInt();
+
+            System.out.println();
         }
+
+        if(drinkNumber == 1){
+            System.out.println("\n"+ drinkNumber + " drink has been added to your order!");
+        }
+        else{
+            System.out.println("\n"+ drinkNumber + " drinks has been added to your order!");
+        }
+
+        orderScreen(scanner);
 
         Drink drink = new Drink(size);
 
+        cart.addToCart(drink);
+
         return drink;
+    }
+
+    public static void addKnot (Scanner scanner){
+        System.out.print("\nHow many Garlic Knots would you like to add to your order? ");
+        int garlicKnots = scanner.nextInt();
+
+        while (garlicKnots < 1) {
+            System.out.println("\nInvalid number of garlic knots option. Please try again.");
+
+            System.out.print("\nHow many Garlic Knots would you like to add to your order? ");
+
+            garlicKnots = scanner.nextInt();
+
+            System.out.println();
+        }
+
+        if(garlicKnots == 1){
+            System.out.println("\n"+ garlicKnots + " garlic knot has been added to your order!");
+        }
+        else{
+            System.out.println("\n"+ garlicKnots + " garlic knots has been added to your order!");
+        }
+
+        orderScreen(scanner);
+
+        GarlicKnots knots = new GarlicKnots();
+
+        cart.addToCart(knots);
+    }
+
+    public static void printReceipt( ShoppingCart cart){
+
+        System.out.println("Your receipt:" +
+                "\n\tYour Pizza:" +
+                "\n " + pizza.getSize() +
+                "\n " + pizza.getCrustType() +
+                "\n " + pizza.getTopping());
+        ;
     }
 
 

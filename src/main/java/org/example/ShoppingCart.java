@@ -3,6 +3,7 @@ package org.example;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ShoppingCart {
 
@@ -16,12 +17,20 @@ public class ShoppingCart {
         cart.add(drink);
     }
 
-    public void removeFromCart(Pizza pizza){
-        cart.remove(pizza);
+    public void addToCart(GarlicKnots knots){
+        cart.add(knots);
     }
 
-    public void removeFromCart(Drink drink){
-        cart.remove(drink);
+    public Pizza displayPizza(){
+        for(MenuItem s : cart){
+            if(s.getName().equalsIgnoreCase("Pizza")){
+                return s;
+            }
+            else{
+
+            }
+        }
+        return null;
     }
 
     public BigDecimal getCartTotal(){
