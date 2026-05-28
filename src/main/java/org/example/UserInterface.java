@@ -109,7 +109,7 @@ public class UserInterface {
                 addPizza(scanner);
                 break;
             case 2:
-
+                addDrink(scanner);
                 break;
             case 3:
 
@@ -118,8 +118,6 @@ public class UserInterface {
 
                 break;
         }
-
-
     }
 
     public static void addPizza(Scanner scanner) {
@@ -131,7 +129,6 @@ public class UserInterface {
         getPizzaCrust(pizza, scanner);
 
         userTopping(pizza, scanner);
-
     }
 
     public static void getPizzaSize(Pizza pizza, Scanner scanner) {
@@ -331,13 +328,16 @@ public class UserInterface {
             for(Toppings cheeseTopping : toppingsList){
                 if(cheese.equalsIgnoreCase(cheeseTopping.getName())){
                     pizza.addTopping(cheeseTopping);
-                    System.out.println("\nTopping " + cheese + " has been added to pizza!\n");
+                    System.out.println("\n " + cheese + " has been added to pizza!\n");
                     System.out.println("Enter another topping, enter 'Exit' to go back to topping options, " +
                             "or enter 'Extra' to add extra toppings.\n");
 
                 }
                 else if(cheese.equalsIgnoreCase("exit")){
                     returnToToppingsMenu(pizza, scanner);
+                }
+                else if(cheese.equalsIgnoreCase("extra")){
+                    extraCheeseTopping(pizza, ToppingsList.getToppings());
                 }
             }
 
@@ -382,7 +382,7 @@ public class UserInterface {
 
         boolean repeat = true;
 
-        System.out.println("\nSelect your sauce toppings:");
+        System.out.println("\nSelect your sauce: ");
         for (Toppings list : toppingsList) {
 
             if (list.getType().equalsIgnoreCase("Sauce")) {
@@ -391,14 +391,14 @@ public class UserInterface {
         }
 
         while(repeat){
-            System.out.print("Enter your topping: ");
+            System.out.print("Enter your sauce: ");
             String sauce = scanner.nextLine();
 
             for(Toppings sauceTopping : toppingsList){
                 if(sauce.equalsIgnoreCase(sauceTopping.getName())){
                     pizza.addTopping(sauceTopping);
-                    System.out.println("\nTopping " + sauce + " has been added to pizza!\n");
-                    System.out.println("Enter another topping, enter 'Exit' to go back to topping options, " +
+                    System.out.println("\n " + sauce + " has been added to pizza!\n");
+                    System.out.println("Enter another sauce, enter 'Exit' to go back to topping options, " +
                             "or enter 'Extra' to add extra toppings.\n");
 
                 }
@@ -415,7 +415,7 @@ public class UserInterface {
 
         boolean repeat = true;
 
-        System.out.println("\nSelect your side toppings:");
+        System.out.println("\nSelect your side for your toppings:");
         for (Toppings list : toppingsList) {
 
             if (list.getType().equalsIgnoreCase("side")) {
@@ -424,13 +424,13 @@ public class UserInterface {
         }
 
         while(repeat){
-            System.out.print("Enter your topping: ");
+            System.out.print("Enter your side: ");
             String side = scanner.nextLine();
 
             for(Toppings sideTopping : toppingsList){
                 if(side.equalsIgnoreCase(sideTopping.getName())){
                     pizza.addTopping(sideTopping);
-                    System.out.println("\nTopping " + side + " has been added to pizza!\n");
+                    System.out.println("\n " + side + " has been added to pizza!\n");
                     System.out.println("Enter another topping, enter 'Exit' to go back to topping options, " +
                             "or enter 'Extra' to add extra toppings.\n");
 
@@ -459,7 +459,7 @@ public class UserInterface {
 
 
         while(extra){
-                System.out.print("\'Extra Meat' to add extra meat to your pizza: ");
+                System.out.print("\nEnter 'Extra Meat' to add extra meat to your pizza: ");
                 String option2 = scanner.nextLine();
 
                 if(option2.equalsIgnoreCase("Extra Meat")){
@@ -475,8 +475,6 @@ public class UserInterface {
                 }
             meatTopping(pizza, ToppingsList.getToppings());
         }
-
-
     }
 
     public static void extraCheeseTopping(Pizza pizza, List<Toppings> toppingsList){
@@ -486,7 +484,7 @@ public class UserInterface {
 
         while(extra){
 
-            System.out.print("\nWould you like extra cheese? ");
+            System.out.print("\nEnter 'Extra Cheese' to add extra cheese to your pizza: ");
             String option2 = scanner.nextLine();
 
             if(option2.equalsIgnoreCase("Cheese") ||
@@ -501,8 +499,56 @@ public class UserInterface {
             else{
                 System.out.println("Invalid input. Please try again.");
             }
+            cheeseTopping(pizza, ToppingsList.getToppings());
         }
 
 
     }
+
+    public static Drink addDrink(Scanner scanner){
+
+
+        System.out.println("Select your size for your drink: " +
+                "\n\t1) Small" +
+                "\n\t2) Medium" +
+                "\n\t3) Large");
+
+        System.out.print("Choose your size: ");
+        int size = scanner.nextInt();
+
+        while (size < 0 || size > 3) {
+            System.out.println("\nInvalid size option. Please try again.\n");
+
+            System.out.println("Select your size for your drink: " +
+                    "\n\t-1) Small" +
+                    "\n\t-2) Medium" +
+                    "\n\t-3) Large");
+
+            System.out.print("Choose your size: ");
+
+             size = scanner.nextInt();
+        }
+
+        System.out.print("How many drinks would you like? ");
+        int drinkNumber = scanner.nextInt();
+
+        while (drinkNumber < 1) {
+            System.out.println("\nInvalid number of drinks option. Please try again.\n");
+
+            System.out.println("Select your size for your drink: " +
+                    "\n\t-1) Small" +
+                    "\n\t-2) Medium" +
+                    "\n\t-3) Large");
+
+            System.out.print("Choose your size: ");
+
+            drinkNumber = scanner.nextInt();
+        }
+
+        Drink drink = new Drink(size);
+
+        return drink;
+    }
+
+
 }

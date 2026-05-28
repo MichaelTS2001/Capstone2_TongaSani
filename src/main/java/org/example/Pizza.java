@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pizza {
+public class Pizza extends MenuItem{
 
     //properties for a pizza
     private int size;
@@ -51,7 +51,7 @@ public class Pizza {
     public BigDecimal getPrice() {
 
 
-        BigDecimal sum = new BigDecimal(0);
+        BigDecimal sum = new BigDecimal("0");
 
         for(Toppings top : this.topping){
            sum = sum.add(top.getPrice(this.size));
