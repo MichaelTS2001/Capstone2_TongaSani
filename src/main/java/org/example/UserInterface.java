@@ -236,28 +236,19 @@ public class UserInterface {
                     meatTopping(pizza, ToppingsList.getToppings());
                     break;
                 case 2:
-                    System.out.println("Select your cheese toppings\n");
-                    for (Toppings toppingsList : ToppingsList.getToppings()) {
-                        if (toppingsList.getType().equalsIgnoreCase("Cheese")) {
-                            System.out.println("\t- " + toppingsList.getName());
-                        }
-                    }
+                    ToppingsList.getToppings();
+
+                    cheeseTopping(pizza, ToppingsList.getToppings());
                     break;
                 case 3:
-                    System.out.println("Select your regular toppings");
-                    for (Toppings toppingsList : ToppingsList.getToppings()) {
-                        if (toppingsList.getType().equalsIgnoreCase("Regular")) {
-                            System.out.println(toppingsList.getName());
-                        }
-                    }
+                    ToppingsList.getToppings();
+
+                    regularTopping(pizza, ToppingsList.getToppings());
                     break;
                 case 4:
-                    System.out.println("Select your sauce");
-                    for (Toppings toppingsList : ToppingsList.getToppings()) {
-                        if (toppingsList.getType().equalsIgnoreCase("Sauce")) {
-                            System.out.println(toppingsList.getName());
-                        }
-                    }
+                    ToppingsList.getToppings();
+
+                    sauceTopping(pizza, ToppingsList.getToppings());
                     break;
                 default:
                     repeat = false; //exit the loop
@@ -294,13 +285,111 @@ public class UserInterface {
 
                 }
                 else if(meat.equalsIgnoreCase("exit")){
-                    returnToToppingsMenu(scanner);
+                    returnToToppingsMenu(pizza, scanner);
                 }
+
+
             }
         }
     }
 
-    public static void returnToToppingsMenu(Scanner scanner){
+    public static void cheeseTopping(Pizza pizza, List<Toppings> toppingsList){
+        Scanner scanner = new Scanner(System.in);
+
+        boolean repeat = true;
+
+        System.out.println("\nSelect your cheese toppings:");
+        for (Toppings list : toppingsList) {
+
+            if (list.getType().equalsIgnoreCase("Cheese")) {
+                System.out.println("\t- " + list.getName());
+            }
+        }
+
+        while(repeat){
+            System.out.print("Enter your topping: ");
+            String cheese = scanner.nextLine();
+
+            for(Toppings cheeseTopping : toppingsList){
+                if(cheese.equalsIgnoreCase(cheeseTopping.getName())){
+                    pizza.addTopping(cheeseTopping);
+                    System.out.println("\nTopping " + cheese + " has been added to pizza!\n");
+                    System.out.println("Type exit to go back to previous menu or add another topping.\n");
+
+                }
+                else if(cheese.equalsIgnoreCase("exit")){
+                    returnToToppingsMenu(pizza, scanner);
+                }
+            }
+
+        }
+    }
+
+    public static void regularTopping(Pizza pizza, List<Toppings> toppingsList){
+        Scanner scanner = new Scanner(System.in);
+
+        boolean repeat = true;
+
+        System.out.println("\nSelect your regular toppings:");
+        for (Toppings list : toppingsList) {
+
+            if (list.getType().equalsIgnoreCase("Regular")) {
+                System.out.println("\t- " + list.getName());
+            }
+        }
+
+        while(repeat){
+            System.out.print("Enter your topping: ");
+            String regular = scanner.nextLine();
+
+            for(Toppings regularTopping : toppingsList){
+                if(regular.equalsIgnoreCase(regularTopping.getName())){
+                    pizza.addTopping(regularTopping);
+                    System.out.println("\nTopping " + regular + " has been added to pizza!\n");
+                    System.out.println("Type exit to go back to previous menu or add another topping.\n");
+
+                }
+                else if(regular.equalsIgnoreCase("exit")){
+                    returnToToppingsMenu(pizza, scanner);
+                }
+            }
+
+        }
+    }
+
+    public static void sauceTopping(Pizza pizza, List<Toppings> toppingsList){
+        Scanner scanner = new Scanner(System.in);
+
+        boolean repeat = true;
+
+        System.out.println("\nSelect your sauce toppings:");
+        for (Toppings list : toppingsList) {
+
+            if (list.getType().equalsIgnoreCase("Sauce")) {
+                System.out.println("\t- " + list.getName());
+            }
+        }
+
+        while(repeat){
+            System.out.print("Enter your topping: ");
+            String sauce = scanner.nextLine();
+
+            for(Toppings sauceTopping : toppingsList){
+                if(sauce.equalsIgnoreCase(sauceTopping.getName())){
+                    pizza.addTopping(sauceTopping);
+                    System.out.println("\nTopping " + sauce + " has been added to pizza!\n");
+                    System.out.println("Type exit to go back to previous menu or add another topping.\n");
+
+                }
+                else if(sauce.equalsIgnoreCase("exit")){
+                    returnToToppingsMenu(pizza, scanner);
+                }
+            }
+
+        }
+    }
+
+    public static void returnToToppingsMenu(Pizza pizza, Scanner scanner){
             System.out.println("\nYour selected pizza toppings:");
             for(Toppings toppings : pizza.getTopping()){
                 System.out.println("\t- " + toppings.getName());
