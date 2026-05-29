@@ -552,11 +552,13 @@ public class UserInterface {
 
         Drink drink = new Drink(size);
 
-        BigDecimal totalDrinks;
+        int i = 0;
+         while(i < drinkNumber){
+             cart.addToCart(drink);
+             i++;
+         }
 
-        totalDrinks = drinkNumber * BigDecimal.valueOf(drink.getPrice(size));
 
-                cart.addToCart(drink);
 
         orderScreen(scanner);
     }
@@ -602,12 +604,6 @@ public class UserInterface {
                         System.out.println("\t\t- " + toppings.getName() + "\t- $" + toppings.getPrice(pizza.getSize()));
                     }
                 }
-            }
-            else if(item.getName().equalsIgnoreCase("Drink")){
-                Drink drink = (Drink) item;
-                    if(!drink.getName().isEmpty() ){
-                        System.out.println("\t\t- " + drink.getName() + "\t- $" + drink.getPrice(drink.getSize()));
-                    }
             }
         }
         System.out.println("Total: $" + cart.getCartTotal());
