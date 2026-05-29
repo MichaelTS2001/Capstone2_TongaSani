@@ -267,6 +267,7 @@ public class UserInterface {
                 default:
                     cart.addToCart(pizza);
                     orderScreen(scanner);
+                    break;
             }
         }
     }
@@ -586,27 +587,40 @@ public class UserInterface {
 
         GarlicKnots knots = new GarlicKnots();
 
-        cart.addToCart(knots);
+        int i = 0;
+        while(i < garlicKnots){
+            cart.addToCart(knots);
+            i++;
+        }
 
         orderScreen(scanner);
     }
 
     public static void printReceipt(ShoppingCart cart){
 
-        System.out.println(cart.getCart());
         System.out.println("\nYour receipt:");
         for(MenuItem item : cart.getCart()){
-            System.out.println("\t- " + item.getName() + " total: $" + item.getPrice());
-            if(item.getName().equalsIgnoreCase("Pizza")){
+            if(item.getName().equalsIgnoreCase("Drink")){
+                Drink drink = (Drink) item;
+                System.out.println("\t- " + drink.getName() + ": $" + drink.getPrice(drink.getSize()));
+            }
+            else if(item.getName().equalsIgnoreCase("Garlic Knots")){
+                GarlicKnots knots = (GarlicKnots) item;
+                System.out.println("\t- " + knots.getName() + ": $" + knots.getPrice());
+            }
+            else{
                 Pizza pizza = (Pizza) item;
+                System.out.println("\t- " + pizza.getName() + " $" + pizza.getPrice());
                 for(Toppings toppings : pizza.getTopping()){
                     if(!toppings.getName().isEmpty() ){
-                        System.out.println("\t\t- " + toppings.getName() + "\t- $" + toppings.getPrice(pizza.getSize()));
+                        System.out.println("\t\t- " + toppings.getName() + ": $" + toppings.getPrice(pizza.getSize()));
                     }
                 }
             }
         }
-        System.out.println("Total: $" + cart.getCartTotal());
+        System.out.println("\nTotal: $" + cart.getCartTotal());
+
+        System.out.println();
     }
 
 

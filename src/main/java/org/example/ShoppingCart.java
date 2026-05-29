@@ -10,9 +10,7 @@ public class ShoppingCart {
     public List<MenuItem> cart = new ArrayList<>();
 
     public void addToCart(Pizza pizza){
-        System.out.println(pizza);
         this.cart.add(pizza);
-        System.out.println(this.cart);
     }
 
     public void addToCart(Drink drink){
@@ -24,7 +22,7 @@ public class ShoppingCart {
     }
 
     public BigDecimal getCartTotal(){
-        BigDecimal total = BigDecimal.valueOf(0);
+        BigDecimal total = BigDecimal.ZERO;
         for(MenuItem item : this.cart){
             total = total.add(item.getPrice());
         }

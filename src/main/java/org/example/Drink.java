@@ -24,13 +24,13 @@ public class Drink extends MenuItem{
         BigDecimal sum = new BigDecimal("0");
 
         if(this.size == 1){
-            sum = sum.add(new BigDecimal("2"));
+            sum = sum.add(new BigDecimal("2.00"));
         }
         else if(this.size == 2){
             sum = sum.add(new BigDecimal("2.50"));
         }
         else{
-            sum = sum.add(new BigDecimal("3"));
+            sum = sum.add(new BigDecimal("3.00"));
         }
         return sum;
     }

@@ -37,46 +37,46 @@ public class Toppings {
         }
         else if(type.equalsIgnoreCase("Meat")){
             if(size == 1) {
-                return new BigDecimal(1);
+                return new BigDecimal("1");
             }
             else if(size == 2){
-                return new BigDecimal(2);
+                return new BigDecimal("2");
             }
             else{
-                return new BigDecimal(3);
+                return new BigDecimal("3");
             }
         }
         else if(type.equalsIgnoreCase("Extra Meat")){
             if(size == 1) {
-                return BigDecimal.valueOf(0.50);
+                return new BigDecimal("0.50");
             }
             else if(size == 2){
-                return BigDecimal.valueOf(1);
+                return new BigDecimal("1");
             }
             else{
-                return BigDecimal.valueOf(1.50);
+                return new BigDecimal("1.50");
             }
         }
         else if (type.equalsIgnoreCase("Extra Cheese")) {
             if(size == 1) {
-                return BigDecimal.valueOf(0.30);
+                return new BigDecimal("0.30");
             }
             else if(size == 2){
-                return BigDecimal.valueOf(0.60);
+                return new BigDecimal("0.60");
             }
             else{
-                return BigDecimal.valueOf(0.90);
+                return new BigDecimal("0.90");
             }
         }
         else{
             if(size == 1) {
-                return BigDecimal.valueOf(0.75);
+                return new BigDecimal("0.75");
             }
             else if(size == 2){
-                return BigDecimal.valueOf(1.50);
+                return new BigDecimal("1.50");
             }
             else{
-                return BigDecimal.valueOf(2.25);
+                return new BigDecimal("2.25");
             }
         }
     }
