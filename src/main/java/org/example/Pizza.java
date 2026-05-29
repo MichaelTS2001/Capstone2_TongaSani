@@ -51,7 +51,7 @@ public class Pizza extends MenuItem{
     public BigDecimal getPrice() {
 
 
-        BigDecimal sum = new BigDecimal("0");
+        BigDecimal sum = new BigDecimal(0);
 
         for(Toppings top : this.topping){
            sum = sum.add(top.getPrice(this.size));

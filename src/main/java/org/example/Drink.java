@@ -4,12 +4,10 @@ import java.math.BigDecimal;
 
 public class Drink extends MenuItem{
     private int size;
-    private BigDecimal price;
 
 
     public Drink(int size) {
         this.size = size;
-        this.price = price;
     }
 
     public int getSize() {

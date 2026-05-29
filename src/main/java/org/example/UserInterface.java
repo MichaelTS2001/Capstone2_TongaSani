@@ -13,8 +13,6 @@ public class UserInterface {
 
     private Scanner scanner;
 
-    private static Pizza pizza2 = new Pizza(0, null);
-
     public static ShoppingCart cart = new ShoppingCart();
 
 
@@ -32,7 +30,7 @@ public class UserInterface {
            try {
                homeScreen(scanner);
            } catch (InputMismatchException ex) {
-               System.out.println("\nInvalid input. Try again\n");
+               System.out.println("\nInvalid input. Try again.\n");
                scanner.nextLine(); //stops an infinite loop
            }
        }
@@ -117,7 +115,7 @@ public class UserInterface {
                 addKnot(scanner);
                 break;
             default:
-                printReceipt();
+                printReceipt(cart);
                 break;
         }
     }
@@ -131,8 +129,6 @@ public class UserInterface {
         getPizzaCrust(pizza, scanner);
 
         userTopping(pizza, scanner);
-
-        cart.addToCart(pizza);
     }
 
     public static void getPizzaSize(Pizza pizza, Scanner scanner) {
@@ -196,7 +192,6 @@ public class UserInterface {
         switch (crust){
             case 1:
                 pizza.setCrustType("Thin");
-                pizza2.setCrustType("Thin");
                 break;
             case 2:
                 pizza.setCrustType("Regular");
@@ -270,9 +265,8 @@ public class UserInterface {
                     sideTopping(pizza, ToppingsList.getToppings());
                     break;
                 default:
-                    repeat = false; //exit the loop
-                    break;
-
+                    cart.addToCart(pizza);
+                    orderScreen(scanner);
             }
         }
     }
@@ -586,20 +580,23 @@ public class UserInterface {
         }
 
         orderScreen(scanner);
-
-        GarlicKnots knots = new GarlicKnots();
-
-        cart.addToCart(knots);
     }
 
-    public static void printReceipt( ShoppingCart cart){
+    public static void printReceipt(ShoppingCart cart){
 
-        System.out.println("Your receipt:" +
-                "\n\tYour Pizza:" +
-                "\n " + pizza.getSize() +
-                "\n " + pizza.getCrustType() +
-                "\n " + pizza.getTopping());
-        ;
+        System.out.println(cart.getCart());
+        System.out.println("\nYour receipt:");
+        for(MenuItem item : cart.getCart()){
+            System.out.println("\t- " + item.getName() + " $" + item.getPrice());
+            if(item.getName().equalsIgnoreCase("Pizza")){
+                Pizza pizza = (Pizza) item;
+                for(Toppings toppings : pizza.getTopping()){
+                    if(!toppings.getName().isEmpty() ){
+                        System.out.println("\t\t- " + toppings.getName() + "\t- $" + toppings.getPrice(pizza.getSize()));
+                    }
+                }
+            }
+        }
     }
 
 

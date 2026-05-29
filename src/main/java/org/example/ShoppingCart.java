@@ -10,7 +10,9 @@ public class ShoppingCart {
     public List<MenuItem> cart = new ArrayList<>();
 
     public void addToCart(Pizza pizza){
-        cart.add(pizza);
+        System.out.println(pizza);
+        this.cart.add(pizza);
+        System.out.println(this.cart);
     }
 
     public void addToCart(Drink drink){
@@ -21,28 +23,16 @@ public class ShoppingCart {
         cart.add(knots);
     }
 
-    public Pizza displayPizza(){
-        for(MenuItem s : cart){
-            if(s.getName().equalsIgnoreCase("Pizza")){
-                return s;
-            }
-            else{
-
-            }
-        }
-        return null;
-    }
-
     public BigDecimal getCartTotal(){
         BigDecimal total = null;
-        for(MenuItem item : cart){
-            total =  total.add(item.getPrice());
+        for(MenuItem item : this.cart){
+            total = total.add(item.getPrice());
         }
 
         return total;
     }
 
     public List<MenuItem> getCart(){
-        return cart;
+        return this.cart;
     }
 }

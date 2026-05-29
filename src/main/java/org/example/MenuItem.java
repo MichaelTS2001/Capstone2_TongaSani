@@ -6,6 +6,7 @@ public class MenuItem {
     String name;
     BigDecimal price;
 
+
     public String getName() {
         return name;
     }
