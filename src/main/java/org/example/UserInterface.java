@@ -395,7 +395,8 @@ public class UserInterface {
             String sauce = scanner.nextLine();
 
             for(Toppings sauceTopping : toppingsList){
-                if(sauce.equalsIgnoreCase(sauceTopping.getName())){
+                if(sauce.equalsIgnoreCase(sauceTopping.getName()) &&
+                        sauceTopping.getType().equalsIgnoreCase("Sauce")){
                     pizza.addTopping(sauceTopping);
                     System.out.println("\n " + sauce + " has been added to pizza!\n");
                     System.out.println("Enter another sauce, enter 'Exit' to go back to topping options, " +
@@ -428,7 +429,8 @@ public class UserInterface {
             String side = scanner.nextLine();
 
             for(Toppings sideTopping : toppingsList){
-                if(side.equalsIgnoreCase(sideTopping.getName())){
+                if(side.equalsIgnoreCase(sideTopping.getName()) &&
+                        sideTopping.getType().equalsIgnoreCase("Side")){
                     pizza.addTopping(sideTopping);
                     System.out.println("\n " + side + " has been added to pizza!\n");
                     System.out.println("Enter another topping, enter 'Exit' to go back to topping options, " +
