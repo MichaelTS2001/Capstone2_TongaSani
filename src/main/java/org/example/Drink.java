@@ -8,6 +8,7 @@ public class Drink extends MenuItem{
 
     public Drink(int size) {
         this.size = size;
+        this.name = "Drink";
     }
 
     public int getSize() {

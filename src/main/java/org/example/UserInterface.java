@@ -325,12 +325,13 @@ public class UserInterface {
             String cheese = scanner.nextLine();
 
             for(Toppings cheeseTopping : toppingsList){
-                if(cheese.equalsIgnoreCase(cheeseTopping.getName())){
+                if(cheese.equalsIgnoreCase(cheeseTopping.getName()) &&
+                        cheeseTopping.getType().equalsIgnoreCase("Cheese")){
                     pizza.addTopping(cheeseTopping);
                     System.out.println("\n " + cheese + " has been added to pizza!\n");
+
                     System.out.println("Enter another topping, enter 'Exit' to go back to topping options, " +
                             "or enter 'Extra' to add extra toppings.\n");
-
                 }
                 else if(cheese.equalsIgnoreCase("exit")){
                     returnToToppingsMenu(pizza, scanner);
@@ -339,7 +340,6 @@ public class UserInterface {
                     extraCheeseTopping(pizza, ToppingsList.getToppings());
                 }
             }
-
         }
     }
 
@@ -504,7 +504,7 @@ public class UserInterface {
 
     }
 
-    public static Drink addDrink(Scanner scanner){
+    public static void addDrink(Scanner scanner){
 
 
         System.out.println("\nSelect your size for your drink: " +
@@ -539,6 +539,7 @@ public class UserInterface {
 
             drinkNumber = scanner.nextInt();
 
+
             System.out.println();
         }
 
@@ -549,13 +550,15 @@ public class UserInterface {
             System.out.println("\n"+ drinkNumber + " drinks has been added to your order!");
         }
 
-        orderScreen(scanner);
-
         Drink drink = new Drink(size);
 
-        cart.addToCart(drink);
+        BigDecimal totalDrinks;
 
-        return drink;
+        totalDrinks = drinkNumber * BigDecimal.valueOf(drink.getPrice(size));
+
+                cart.addToCart(drink);
+
+        orderScreen(scanner);
     }
 
     public static void addKnot (Scanner scanner){
@@ -579,6 +582,10 @@ public class UserInterface {
             System.out.println("\n"+ garlicKnots + " garlic knots has been added to your order!");
         }
 
+        GarlicKnots knots = new GarlicKnots();
+
+        cart.addToCart(knots);
+
         orderScreen(scanner);
     }
 
@@ -587,7 +594,7 @@ public class UserInterface {
         System.out.println(cart.getCart());
         System.out.println("\nYour receipt:");
         for(MenuItem item : cart.getCart()){
-            System.out.println("\t- " + item.getName() + " $" + item.getPrice());
+            System.out.println("\t- " + item.getName() + " total: $" + item.getPrice());
             if(item.getName().equalsIgnoreCase("Pizza")){
                 Pizza pizza = (Pizza) item;
                 for(Toppings toppings : pizza.getTopping()){
@@ -596,7 +603,14 @@ public class UserInterface {
                     }
                 }
             }
+            else if(item.getName().equalsIgnoreCase("Drink")){
+                Drink drink = (Drink) item;
+                    if(!drink.getName().isEmpty() ){
+                        System.out.println("\t\t- " + drink.getName() + "\t- $" + drink.getPrice(drink.getSize()));
+                    }
+            }
         }
+        System.out.println("Total: $" + cart.getCartTotal());
     }
 
 

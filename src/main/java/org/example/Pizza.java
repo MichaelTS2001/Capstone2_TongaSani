@@ -14,12 +14,14 @@ public class Pizza extends MenuItem{
 
     public Pizza(){
         this.topping = new ArrayList<>();
+        this.name = "Pizza";
     }
 
     public Pizza(int size, String crustType) {
         this.size = size;
         this.crustType = crustType;
         this.topping = new ArrayList<>();
+        this.name = "Pizza";
 
     }
 

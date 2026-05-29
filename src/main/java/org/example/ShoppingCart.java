@@ -24,7 +24,7 @@ public class ShoppingCart {
     }
 
     public BigDecimal getCartTotal(){
-        BigDecimal total = null;
+        BigDecimal total = BigDecimal.valueOf(0);
         for(MenuItem item : this.cart){
             total = total.add(item.getPrice());
         }
