@@ -598,7 +598,7 @@ public class UserInterface {
 
     public static void printReceipt(ShoppingCart cart){
 
-        System.out.println("\nYour receipt:");
+        System.out.println("\n=========== Your receipt ===========");
         for(MenuItem item : cart.getCart()){
             if(item.getName().equalsIgnoreCase("Drink")){
                 Drink drink = (Drink) item;
@@ -619,9 +619,5 @@ public class UserInterface {
             }
         }
         System.out.println("\nTotal: $" + cart.getCartTotal());
-
-        System.out.println();
     }
-
-
 }

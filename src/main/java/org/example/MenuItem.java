@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class MenuItem {
     String name;
-    BigDecimal price;
+    BigDecimal price = BigDecimal.ZERO;
 
 
     public String getName() {
