@@ -2,14 +2,25 @@ package org.example;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class FileReader {
 
-    public static void writeCart(Pizza pizza){
+    public void writeCart(StringBuilder sb){
         try{
-            FileWriter fileWriter = new FileWriter("src/main/resources/cart", true);
+            LocalDateTime current = LocalDateTime.now();
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MMdd-hhmmss");
+            String formattedDate = current.format(dateTimeFormatter);
 
-            fileWriter.write(String.format("%d", pizza.getSize()));
+            String fileName = "src/main/resources/" + formattedDate + ".txt";
+
+            System.out.println(fileName);
+
+            FileWriter fileWriter = new FileWriter(fileName);
+
+            fileWriter.write(String.format(sb.toString()));
 
             fileWriter.close();
         }

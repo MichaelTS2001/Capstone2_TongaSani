@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -114,8 +115,11 @@ public class UserInterface {
             case 3:
                 addKnot(scanner);
                 break;
-            default:
+            case 4:
                 printReceipt(cart);
+                break;
+            default:
+                System.out.println("Invalid option. Please try again.");
                 break;
         }
     }
@@ -599,12 +603,16 @@ public class UserInterface {
     }
 
     public static void printReceipt(ShoppingCart cart){
+        StringBuilder sb = new StringBuilder();
 
         System.out.println("\n=========== Your receipt ===========");
         for(MenuItem item : cart.getCart()){
             if(item.getName().equalsIgnoreCase("Drink")){
                 Drink drink = (Drink) item;
-                System.out.println("\t- " + drink.getName() + ": $" + drink.getPrice(drink.getSize()));
+                String drinkInfo = "\t- " + drink.getName() + ": $" + drink.getPrice(drink.getSize()) + "\n";
+                sb.append(drinkInfo);
+                System.out.println(sb);
+
             }
             else if(item.getName().equalsIgnoreCase("Garlic Knots")){
                 GarlicKnots knots = (GarlicKnots) item;
@@ -621,5 +629,11 @@ public class UserInterface {
             }
         }
         System.out.println("\nTotal: $" + cart.getCartTotal());
+
+        FileReader fileReader = new FileReader();
+        fileReader.writeCart(sb);
+
+        cart = new ShoppingCart(); //creates new shopping cart
+        sb = new StringBuilder();
     }
 }
