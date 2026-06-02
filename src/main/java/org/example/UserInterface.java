@@ -603,14 +603,17 @@ public class UserInterface {
     }
 
     public static void printReceipt(ShoppingCart cart){
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(); //adding multiple lines of data, displays and writes it
 
         System.out.println("\n=========== Your receipt ===========");
         for(MenuItem item : cart.getCart()){
             if(item.getName().equalsIgnoreCase("Drink")){
                 Drink drink = (Drink) item;
+                //Create a variable for the drink info so that you can both prints the line and writes it to the txt file
                 String drinkInfo = "\t- " + drink.getName() + ": $" + drink.getPrice(drink.getSize()) + "\n";
+                //Appends adds it to the string builder for the recipt
                 sb.append(drinkInfo);
+                //prints out the receipt for the user
                 System.out.println(sb);
 
             }
@@ -630,10 +633,13 @@ public class UserInterface {
         }
         System.out.println("\nTotal: $" + cart.getCartTotal());
 
+        //TODO - add the header and the total to the receipt
+
+        //Creates a fileReader to read the String Builder and write on to the receipt file
         FileReader fileReader = new FileReader();
         fileReader.writeCart(sb);
 
-        cart = new ShoppingCart(); //creates new shopping cart
-        sb = new StringBuilder();
+        cart = new ShoppingCart(); //clears the shopping cart for the next order
+        sb = new StringBuilder(); //clears the string builder for the next order
     }
 }
