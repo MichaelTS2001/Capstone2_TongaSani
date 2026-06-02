@@ -11,7 +11,7 @@ public class FileReader {
     public void writeCart(StringBuilder sb){
         try{
             LocalDateTime current = LocalDateTime.now();
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MMdd-hhmmss");
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("MM-dd-yyyy-----hh-mm-ss");
             String formattedDate = current.format(dateTimeFormatter);
 
             String fileName = "src/main/resources/" + formattedDate + ".txt";
