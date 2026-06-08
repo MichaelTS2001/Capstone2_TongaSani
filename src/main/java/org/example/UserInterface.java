@@ -291,7 +291,7 @@ public class UserInterface {
         }
 
         while(repeat){
-            System.out.print("Enter your topping: ");
+            System.out.print("Enter your topping or go back to toppings menu: ");
             String meat = scanner.nextLine();
 
             for(Toppings meatTopping : toppingsList){
@@ -302,12 +302,16 @@ public class UserInterface {
                     System.out.println("Enter another topping, enter 'Exit' to go back to topping options, " +
                             "or enter 'Extra' to add extra toppings.\n");
                 }
-                else if(meat.equalsIgnoreCase("exit")){
-                    returnToToppingsMenu(pizza, scanner);
-                }
                 else if(meat.equalsIgnoreCase("extra")){
                     extraMeatTopping(pizza, ToppingsList.getToppings());
                 }
+                else if(meat.equalsIgnoreCase("exit")){
+                returnToToppingsMenu(pizza, scanner);
+                }
+            }
+
+            if(meat.equalsIgnoreCase("Go Back")){
+                userTopping(pizza, scanner);
             }
         }
     }
@@ -326,7 +330,7 @@ public class UserInterface {
         }
 
         while(repeat){
-            System.out.print("Enter your topping: ");
+            System.out.print("Enter your topping or go back to the toppings menu: ");
             String cheese = scanner.nextLine();
 
             for(Toppings cheeseTopping : toppingsList){
@@ -605,33 +609,54 @@ public class UserInterface {
     public static void printReceipt(ShoppingCart cart){
         StringBuilder sb = new StringBuilder(); //adding multiple lines of data, displays and writes it
 
-        System.out.println("\n=========== Your receipt ===========");
+        String receipt = "\n=========== Your receipt ===========\n";
+
+        sb.append(receipt);
+
+        System.out.println(sb);
+
         for(MenuItem item : cart.getCart()){
             if(item.getName().equalsIgnoreCase("Drink")){
                 Drink drink = (Drink) item;
                 //Create a variable for the drink info so that you can both prints the line and writes it to the txt file
-                String drinkInfo = "\t- " + drink.getName() + ": $" + drink.getPrice(drink.getSize()) + "\n";
-                //Appends adds it to the string builder for the recipt
+                String drinkInfo = "\n\t- " + drink.getName() + ": $" + drink.getPrice(drink.getSize()) + "\n";
+                //Appends adds it to the string builder for the receipt
                 sb.append(drinkInfo);
                 //prints out the receipt for the user
                 System.out.println(sb);
 
             }
             else if(item.getName().equalsIgnoreCase("Garlic Knots")){
+
                 GarlicKnots knots = (GarlicKnots) item;
-                System.out.println("\t- " + knots.getName() + ": $" + knots.getPrice());
+
+                String knotsInfo = "\n\t- " + knots.getName()+ ": $" + knots.getPrice();
+
+                sb.append(knotsInfo);
+
+                System.out.println(sb);
+
             }
             else{
                 Pizza pizza = (Pizza) item;
-                System.out.println("\t- " + pizza.getName() + " $" + pizza.getPrice());
+
+                String pizzaInfo = "\t- " + pizza.getName() + " $" + pizza.getPrice();
+
                 for(Toppings toppings : pizza.getTopping()){
                     if(!toppings.getName().isEmpty() ){
-                        System.out.println("\t\t- " + toppings.getName() + ": $" + toppings.getPrice(pizza.getSize()));
+                        System.out.println("\n\t\t- " + toppings.getName() + ": $" + toppings.getPrice(pizza.getSize()));
                     }
                 }
+                sb.append(pizzaInfo);
+
+                System.out.println(sb);
             }
         }
-        System.out.println("\nTotal: $" + cart.getCartTotal());
+        String totalInfo = "\nTotal: $" + cart.getCartTotal();
+
+        sb.append(totalInfo);
+
+        System.out.println(sb);
 
         //TODO - add the header and the total to the receipt
 
