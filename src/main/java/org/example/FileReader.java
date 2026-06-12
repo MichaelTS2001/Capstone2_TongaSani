@@ -19,8 +19,9 @@ public class FileReader {
             System.out.println(fileName);
 
             FileWriter fileWriter = new FileWriter(fileName);
-
-            fileWriter.write(String.format(sb.toString()));
+            System.out.println("Receipt text");
+            System.out.println(String.format(sb.toString()));
+            //fileWriter.write(String.format(sb.toString()));
 
             fileWriter.close();
         }

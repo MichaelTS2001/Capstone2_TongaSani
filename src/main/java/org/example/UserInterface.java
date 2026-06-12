@@ -625,7 +625,7 @@ public class UserInterface {
 
         sb.append(receipt);
 
-        System.out.println(sb);
+        //System.out.println(sb);
 
         for(MenuItem item : cart.getCart()){
             if(item.getName().equalsIgnoreCase("Drink")){
@@ -646,22 +646,26 @@ public class UserInterface {
 
                 sb.append(knotsInfo);
 
-                System.out.println(sb);
+                //System.out.println(sb);
 
             }
-            else{
+            else {
                 Pizza pizza = (Pizza) item;
 
                 String pizzaInfo = "\t- " + pizza.getName() + " $" + pizza.getPrice();
 
-                for(Toppings toppings : pizza.getTopping()){
-                    if(!toppings.getName().isEmpty() ){
-                        System.out.println("\n\t\t- " + toppings.getName() + ": $" + toppings.getPrice(pizza.getSize()));
+                String toppingInfo = null;
+
+                for (Toppings toppings : pizza.getTopping()) {
+                    if (!toppings.getName().isEmpty()) {
+                        toppingInfo += "\n\t\t- " + toppings.getName() + ": $" + toppings.getPrice(pizza.getSize());
+                        System.out.println(toppingInfo);
                     }
                 }
                 sb.append(pizzaInfo);
+                sb.append(toppingInfo);
 
-                System.out.println(sb);
+                //System.out.println(sb);
             }
         }
         String totalInfo = "\nTotal: $" + cart.getCartTotal();

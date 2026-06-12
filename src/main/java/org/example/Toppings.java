@@ -40,7 +40,7 @@ public class Toppings {
                 return new BigDecimal("1");
             }
             else if(size == 2){
-                return new BigDecimal("2");
+                return new BigDecimal("2"); //mismatch info
             }
             else{
                 return new BigDecimal("3");
